@@ -1,5 +1,5 @@
 package trees;
 
-public class BinarySearchTree extends AbstractTree {
+public class BinarySearchTree<E> extends AbstractTree<E> {
 
 }
