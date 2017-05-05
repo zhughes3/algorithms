@@ -1,65 +1,116 @@
 package trees;
 
-public class TreeNode<E> implements ITreeNode<E> {
-	
+public class TreeNode<E> implements ITreeNode<E> 
+{
 	private TreeNode<E> parent;
 	private TreeNode<E> left;
 	private TreeNode<E> right;
 	private E data;
-	private int degree;
 	
-	public TreeNode(E e) {
+	public TreeNode(E e) 
+	{
 		data = e;
+		parent = null;
+		left = null;
+		right = null;
 	}
 	
-	public TreeNode(E e, TreeNode<E> parent) {
+	public TreeNode(E e, TreeNode<E> parent) 
+	{
 		data = e;
 		this.parent = parent;
+		left = null;
+		right = null;
 	}
 
 	@Override
-	public boolean isLeaf() {
-		return (left == null && right == null) ? true : false; 
+	public boolean isRoot() 
+	{
+		if(parent == null)
+			return true;
+		
+		else 
+			return false;
 	}
 
 	@Override
-	public boolean isRoot() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isLeaf() 
+	{
+		if(left == null && right == null)
+			return true;
+		
+		else 
+			return false;
 	}
 
 	@Override
-	public int getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+	public E getData() 
+	{
+		return data;
 	}
 
 	@Override
-	public int getDepth() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getDegree() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setData(E e) {
+	public void setData(E e) 
+	{
 		data = e;
 	}
 
-	@Override
-	public E getData() {
-		return data;
-	}
-	
-	public TreeNode<E> getParent() {
+	public TreeNode<E> getParent() 
+	{
 		return parent;
 	}
 	
+	public void setParent(TreeNode<E> node)
+	{
+		parent = node;
+	}
 	
+	public TreeNode<E> getLeft()
+	{
+		return left;
+	}
+	
+	public void setLeft(TreeNode<E> node)
+	{
+		left = node;
+	}
+	
+	public TreeNode<E> getRight()
+	{
+		return right;
+	}
+	
+	public void setRight(TreeNode<E> node)
+	{
+		right = node;
+	}
 
+	@Override
+	//return number of children of node
+	public int getDegree() 
+	{
+		int degree = 2;
+		
+		if(left == null)
+			degree--;
+		
+		if(right == null)
+			degree--;
+		
+		return degree;
+	}
+
+	@Override
+	public int getHeight() 
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getDepth() 
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
