@@ -12,13 +12,13 @@ public interface Tree<E> extends Iterable<E> {
 	  public int delete(E e);
 
 	  /** Inorder traversal from the root*/
-	  public void inorder();
+	  public String inorder();
 
 	  /** Postorder traversal from the root */
-	  public void postorder();
+	  public String postorder();
 
 	  /** Preorder traversal from the root */
-	  public void preorder();
+	  public String preorder();
 
 	  /** Get the number of nodes in the tree */
 	  public int getSize();

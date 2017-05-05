@@ -150,21 +150,66 @@ public class BinarySearchTree<E extends Comparable<E>> extends AbstractTree<E>
 	}
 	
 	@Override
-	public void inorder() {
-		// TODO Auto-generated method stub
-		
+	public String inorder() 
+	{
+		return "[" + inorder(root.getLeft()) + ", " + root.getData().toString() + ", " + inorder(root.getRight()) + "]";
+	}
+	
+	private String inorder(BinaryTreeNode<E> node)
+	{
+		if(node.isLeaf())
+			return node.getData().toString();
+	
+		else if(node.getLeft() == null)
+			return node.getData().toString() + ", " + inorder(node.getRight());
+	
+		else if(node.getRight() == null)
+			return inorder(node.getLeft()) + ", " + node.getData().toString();
+	
+		else
+			return inorder(node.getLeft()) + ", " + node.getData().toString() + ", " + inorder(node.getRight());
 	}
 
 	@Override
-	public void postorder() {
-		// TODO Auto-generated method stub
+	public String postorder() 
+	{
+		return "[" + postorder(root.getLeft()) + ", " + postorder(root.getRight()) + ", " + root.getData().toString() + "]";
+	}
+	
+	private String postorder(BinaryTreeNode<E> node)
+	{
+		if(node.isLeaf())
+			return node.getData().toString();
 		
+		else if(node.getLeft() == null)
+			return postorder(node.getRight()) + ", " + node.getData().toString();
+		
+		else if(node.getRight() == null)
+			return postorder(node.getLeft()) + ", " + node.getData().toString();
+		
+		else
+			return postorder(node.getLeft()) + ", " + postorder(node.getRight()) + ", " + node.getData().toString();
 	}
 
 	@Override
-	public void preorder() {
-		// TODO Auto-generated method stub
+	public String preorder() 
+	{
+		return "[" + root.getData().toString() + ", " + preorder(root.getLeft()) + ", " + preorder(root.getRight()) + "]";
+	}
+	
+	private String preorder(BinaryTreeNode<E> node)
+	{
+		if(node.isLeaf())
+			return node.getData().toString();
 		
+		else if(node.getLeft() == null)
+			return node.getData().toString() + ", " + preorder(node.getRight());
+		
+		else if(node.getRight() == null)
+			return node.getData().toString() + ", " + preorder(node.getLeft());
+		
+		else
+			return node.getData().toString() + ", " + preorder(node.getLeft()) + ", " + preorder(node.getRight());
 	}
 
 	@Override

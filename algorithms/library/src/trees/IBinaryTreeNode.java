@@ -17,4 +17,11 @@ public interface IBinaryTreeNode<E> {
 	
 	public E getData();
 	
+	public BinaryTreeNode<E> getLeft();
+	
+	public BinaryTreeNode<E> getRight();
+	
+	public void setLeft(BinaryTreeNode<E> node);
+
+	public void setRight(BinaryTreeNode<E> node);	
 }
