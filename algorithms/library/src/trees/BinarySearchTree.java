@@ -11,7 +11,12 @@ public class BinarySearchTree<E extends Comparable<E>> extends AbstractTree<E>
 		root = null;
 	}
 	
-	public BinarySearchTree(BinaryTreeNode<E> node)
+	public BinarySearchTree(E e)
+	{
+		root = new BinaryTreeNode(e);
+	}
+	
+	private BinarySearchTree(BinaryTreeNode<E> node)
 	{
 		root = node;
 	}
@@ -104,9 +109,13 @@ public class BinarySearchTree<E extends Comparable<E>> extends AbstractTree<E>
 					if(e.compareTo(cur.getParent().getData()) == 1)
 					{
 						cur.getParent().getRight().setData((E) new BinarySearchTree(cur.getRight()).getMin());
+						new BinarySearchTree(cur.getRight()).deleteMin();
 					}
 					else 
-						cur.getParent().setLeft(null);
+					{
+						cur.getParent().getLeft().setData((E) new BinarySearchTree(cur.getRight()).getMin());
+						new BinarySearchTree(cur.getRight()).deleteMin();
+					}
 				}
 			}
 			
@@ -127,7 +136,7 @@ public class BinarySearchTree<E extends Comparable<E>> extends AbstractTree<E>
 	
 	public void deleteMax()
 	{
-	
+		this.getMaxNode().getParent().setRight(null);
 	}
 	
 	public E getMin()
@@ -137,7 +146,7 @@ public class BinarySearchTree<E extends Comparable<E>> extends AbstractTree<E>
 	
 	public void deleteMin()
 	{
-		
+		this.getMinNode().getParent().setLeft(null);
 	}
 	
 	@Override
