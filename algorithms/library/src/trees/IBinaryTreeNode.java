@@ -1,6 +1,6 @@
 package trees;
 
-public interface ITreeNode<E> {
+public interface IBinaryTreeNode<E> {
 	
 	public boolean isLeaf();
 	

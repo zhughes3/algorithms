@@ -1,13 +1,13 @@
 package trees;
 
-public class TreeNode<E> implements ITreeNode<E> 
+public class BinaryTreeNode<E> implements IBinaryTreeNode<E> 
 {
-	private TreeNode<E> parent;
-	private TreeNode<E> left;
-	private TreeNode<E> right;
+	private BinaryTreeNode<E> parent;
+	private BinaryTreeNode<E> left;
+	private BinaryTreeNode<E> right;
 	private E data;
 	
-	public TreeNode(E e) 
+	public BinaryTreeNode(E e) 
 	{
 		data = e;
 		parent = null;
@@ -15,7 +15,7 @@ public class TreeNode<E> implements ITreeNode<E>
 		right = null;
 	}
 	
-	public TreeNode(E e, TreeNode<E> parent) 
+	public BinaryTreeNode(E e, BinaryTreeNode<E> parent) 
 	{
 		data = e;
 		this.parent = parent;
@@ -55,32 +55,32 @@ public class TreeNode<E> implements ITreeNode<E>
 		data = e;
 	}
 
-	public TreeNode<E> getParent() 
+	public BinaryTreeNode<E> getParent() 
 	{
 		return parent;
 	}
 	
-	public void setParent(TreeNode<E> node)
+	public void setParent(BinaryTreeNode<E> node)
 	{
 		parent = node;
 	}
 	
-	public TreeNode<E> getLeft()
+	public BinaryTreeNode<E> getLeft()
 	{
 		return left;
 	}
 	
-	public void setLeft(TreeNode<E> node)
+	public void setLeft(BinaryTreeNode<E> node)
 	{
 		left = node;
 	}
 	
-	public TreeNode<E> getRight()
+	public BinaryTreeNode<E> getRight()
 	{
 		return right;
 	}
 	
-	public void setRight(TreeNode<E> node)
+	public void setRight(BinaryTreeNode<E> node)
 	{
 		right = node;
 	}

@@ -2,14 +2,22 @@ package trees;
 
 import java.util.Iterator;
 
-public class BinarySearchTree<E> extends AbstractTree<E> {
+public class BinarySearchTree<E extends Comparable<E>> extends AbstractTree<E> implements Comparable<TreeNode<E>>{
 	
 	private TreeNode<E> root;
 
 	@Override
-	public boolean search(E e) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean search(E e) 
+	{
+		TreeNode<E> cur = root;
+		while(cur != null)
+		{
+			if(cur.getData() == e)
+				return true;
+			
+			else if(e > cur.getData())
+				cur = cur.getRight();
+		}
 	}
 
 	@Override
