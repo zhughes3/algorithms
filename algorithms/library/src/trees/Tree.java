@@ -4,13 +4,12 @@ public interface Tree<E> extends Iterable<E> {
 	/** Return true if the element is in the tree */
 	  public boolean search(E e);
 
-	  /** Insert element o into the binary tree
-	   * Return true if the element is inserted successfully */
-	  public boolean insert(E e);
+	  // Insert element e into the binary tree
+	  public void insert(E e);
 
-	  /** Delete the specified element from the tree
-	   * Return true if the element is deleted successfully */
-	  public boolean delete(E e);
+	  // Delete the specified element from the tree
+	  //return -1 if element is not found, 0 otherwise
+	  public int delete(E e);
 
 	  /** Inorder traversal from the root*/
 	  public void inorder();
