@@ -18,5 +18,5 @@ public int remove(E e);
 
 public void removeAll();
 
-public int getSize();
+public int getLength();
 }

@@ -2,38 +2,39 @@ package list;
 
 public class LinkedList<E> implements List<E> {
 	
-	private int size;
+	private int length;
 	Node<E> head;
 	
 	public LinkedList()
 	{
-		size = 0;
+		length = 0;
 		head = null;
 	}
 	
 	public LinkedList(E e)
 	{
 		this.head = new Node(e, null);
-		size = 1;
+		length = 1;
 	}
 
 	@Override
 	//insert element to the front of the list
 	public void add(E e) 
 	{
-		if(size == 0)
+		if(length == 0)
 			head = new Node<E>(e, null);
 		
 		else
 			head = new Node<E>(e, head);
 		
-		size++;
+		length++;
 	}
 
 	@Override
+	//insert element to a given index in the list
 	public void add(int idx, E e) 
 	{
-		if(idx >= size || idx < 0)
+		if(idx >= length || idx < 0)
 			throw new IndexOutOfBoundsException();
 		
 		else if(idx == 0)
@@ -43,14 +44,15 @@ public class LinkedList<E> implements List<E> {
 		{
 			Node<E> newNode = new Node(e, this.getNode(idx-1).getNext());
 			this.getNode(idx-1).setNext(newNode);
-			size++;
+			length++;
 		}
 	}
 
 	@Override
+	//returns value at a given index
 	public E get(int idx) 
 	{
-		if(idx >= size || idx < 0)
+		if(idx >= length || idx < 0)
 			throw new IndexOutOfBoundsException();
 		
 		else
@@ -63,7 +65,7 @@ public class LinkedList<E> implements List<E> {
 	public int indexOf(E e) 
 	{
 		Node<E> cur = head;
-		for(int i = 0; i < size; i++)
+		for(int i = 0; i < length; i++)
 		{
 			if(cur.getData() == e)
 				return i;
@@ -75,9 +77,10 @@ public class LinkedList<E> implements List<E> {
 	}
 
 	@Override
+	//returns true is list is empty, false otherwise
 	public boolean isEmpty() 
 	{
-		if(size == 0)
+		if(length == 0)
 			return true;
 		
 		else 
@@ -85,21 +88,22 @@ public class LinkedList<E> implements List<E> {
 	}
 
 	@Override
+	//remove node at given index
 	public void remove(int idx) 
 	{
-		if(idx >= size || idx < 0)
+		if(idx >= length || idx < 0)
 			throw new IndexOutOfBoundsException();
 		
 		else if(idx == 0)
 			head = head.getNext();
 		
-		else if(idx == size-1)
+		else if(idx == length-1)
 			this.getNode(idx-1).setNext(null);
 		
 		else
 			this.getNode(idx-1).setNext(this.getNode(idx).getNext());	
 		
-		size--;
+		length--;
 	}
 
 	@Override
@@ -108,7 +112,7 @@ public class LinkedList<E> implements List<E> {
 	public int remove(E e) 
 	{
 		Node<E> cur = head;
-		for(int i = 0; i < size; i++)
+		for(int i = 0; i < length; i++)
 		{
 			if(cur.getData() == e)
 			{
@@ -124,21 +128,24 @@ public class LinkedList<E> implements List<E> {
 	}
 
 	@Override
+	//removes all nodes from the list by setting the head to null
 	public void removeAll() 
 	{
 		head = null;
-		size = 0;
+		length = 0;
 	}
 
 	@Override
-	public int getSize() 
+	//returns length of the list
+	public int getLength() 
 	{
-		return size;
+		return length;
 	}
 
+	//returns node at a given index
 	private Node<E> getNode(int idx)
 	{
-		if(idx >= size || idx < 0)
+		if(idx >= length || idx < 0)
 			throw new IndexOutOfBoundsException();
 		
 		Node<E> cur = head;
@@ -152,12 +159,14 @@ public class LinkedList<E> implements List<E> {
 		return cur;
 	}
 	
+	//prints a string representation of current state of the list
+	//prints each node as: [current_pointer, value, next_pointer] with the head appearing as the left-most node
 	public String printList()
 	{
 		String print = "";
 		Node<E> cur = head;
 		int i = 0;
-		while(i < size)
+		while(i < length)
 		{
 			if(cur.getNext() != null)
 				print += "[" + cur.toString() + ", " + cur.getData().toString() + ", " + cur.getNext().toString() + "]";
