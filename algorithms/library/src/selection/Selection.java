@@ -3,10 +3,13 @@ package selection;
 import java.util.Random;
 
 public class Selection {
+	
+	static Random rand = new Random();
 
 	public static void main(String[] args) {
 		for (int i = 0; i < 10; i++) {
 			int[] randomArray = createRandomArray(10, 100);
+			printArray(randomArray);
 			minMax(randomArray);
 		}
 		
@@ -36,7 +39,7 @@ public class Selection {
 			} else {
 				comparisons++;
 			}
-			i++;
+			i = i + 2;
 		}
 		int maxComparisons = 3 * (input.length / 2);
 		String output = ("Max: " + max + ", min: " + min + ", comparisons: " + comparisons + ", 3n/2=" + maxComparisons);
@@ -54,8 +57,16 @@ public class Selection {
 	}
 	
 	public static int getRandomNumber(int max, int min) {
-		Random rand = new Random();
 		return rand.nextInt(max) + 1;
+	}
+	
+	public static void printArray(int[] array) {
+		String output = "[ ";
+		for (int i : array) {
+			output += i + ", ";
+		}
+		output += " ]";
+		System.out.println(output);
 	}
 
 }
