@@ -25,6 +25,23 @@ void insertionSort(int arr[], int n)
 	}
 }
 
+void bubbleSort(int arr[], int n)
+{
+	int i, j;
+	for(i = n-1; i >=0; i--)
+	{
+		for(j = 0; j < i-1; j++)
+		{
+			if(arr[j] > arr[j+1])
+			{
+				int temp = arr[j+1];
+				arr[j+1] = arr[j];
+				arr[j] = temp;
+			}
+		}
+	}
+}
+
 void printArr(int arr[], int n)
 {
 	printf("[ ");
@@ -35,6 +52,13 @@ void printArr(int arr[], int n)
 	printf("%d]\n", arr[n-1]);
 }
 
+void randArr(int arr[], int n)
+{
+	int i;
+	for(i = 0; i < n; i++)
+		arr[i] = rand() % 50;
+}
+
 void main()
 {
 	int n = 15;
@@ -43,13 +67,15 @@ void main()
 
 	int pre[n];
 
-	int i;
-	for(i = 0; i < n; i++)
-		pre[i] = rand() % 50;
-
+	puts("Insertion:");
+	randArr(pre, n);
+	printArr(pre, n);
+	insertionSort(pre, n);
 	printArr(pre, n);
 
-	insertionSort(pre, n);
-
+	puts("\nBubble:");
+	randArr(pre, n);
+	printArr(pre, n);
+	bubbleSort(pre, n);
 	printArr(pre, n);
 }
