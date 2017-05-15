@@ -25,19 +25,24 @@ void insertionSort(int arr[], int n)
 	}
 }
 
-void bubbleSortPtr(int* arr, int n)
+void insertionSortPtr(int* arr, int n)
 {
 	int i, j;
-	for(i = n-1; i >= 0; i--)
-		for(j = 0; j < i; j++)
+	for(i = 1; i < n; i++)
+	{
+		for(j = i; j >= 1; j--)
 		{
-			if(*(arr+j) < *(arr+j+1))
+			if(*(arr+j) < *(arr+j-1))
 			{
-				int temp = *(arr+j);
-				*(arr+j) = *(arr+j+1);
-				*(arr+j+1) = temp;
+				int temp = *(arr+j-1);
+				*(arr+j-1) = *(arr+j);
+				*(arr+j) = temp;
 			}
+
+			else
+				break;
 		}
+	}
 }
 
 void bubbleSort(int arr[], int n)
@@ -55,6 +60,21 @@ void bubbleSort(int arr[], int n)
 			}
 		}
 	}
+}
+
+void bubbleSortPtr(int* arr, int n)
+{
+	int i, j;
+	for(i = n-1; i >= 0; i--)
+		for(j = 0; j < i; j++)
+		{
+			if(*(arr+j) > *(arr+j+1))
+			{
+				int temp = *(arr+j);
+				*(arr+j) = *(arr+j+1);
+				*(arr+j+1) = temp;
+			}
+		}
 }
 
 void printArr(int arr[], int n)
@@ -88,6 +108,12 @@ void main()
 	insertionSort(pre, n);
 	printArr(pre, n);
 
+	puts("\nInsertion (with pointers):");
+	randArr(pre, n);
+	printArr(pre, n);
+	insertionSortPtr(pre, n);
+	printArr(pre, n);
+
 	puts("\nBubble:");
 	randArr(pre, n);
 	printArr(pre, n);
@@ -97,6 +123,6 @@ void main()
 	puts("\nBubble (with pointers):");
 	randArr(pre, n);
 	printArr(pre, n);
-	bubbleSort(pre, n);
+	bubbleSortPtr(pre, n);
 	printArr(pre, n);
 }
