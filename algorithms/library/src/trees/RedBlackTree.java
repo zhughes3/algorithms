@@ -1,5 +1,6 @@
 package trees;
 
-public class RedBlackTree<E> extends BinarySearchTree<E> {
+public class RedBlackTree<E extends Comparable<E>> extends BinarySearchTree<E> 
+{
 
 }
