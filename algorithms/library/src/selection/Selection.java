@@ -7,44 +7,89 @@ public class Selection {
 	static Random rand = new Random();
 
 	public static void main(String[] args) {
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 5; i++) {
 			int[] randomArray = createRandomArray(10, 100);
 			printArray(randomArray);
 			minMax(randomArray);
 		}
-		
 	}
 	
 	public static void minMax(int[] input) {
-		int min = Integer.MAX_VALUE, max = -1, comparisons = 0;
-		int i = 0;
-		while (i < input.length) {
-			//if current is last value of the array, wrap around and consider i+1 to equal 0
-			int next = (i == input.length - 1) ? input[0]: input[i+1];
-			
-			if (input[i] > next) {
-				comparisons++;
-				if (input[i] > max) {
-					max = input[i];
+		int min = input[0], max = input[0], comparisons = 0;
+		for(int i = 1; i < input.length; i = i+2)
+		{
+			int next;
+			if(i+1 < input.length)
+			{
+				next = input[i+1];
+				if(input[i] < next)
+				{
+					comparisons++;
+					if(input[i] < min)
+					{
+						comparisons++;
+						min = input[i];
+					}
 					
+					if(next > max)
+					{
+						comparisons++;
+						max = next;
+					}
 				}
-				comparisons++;
 				
-				if (next < min) {
-					min = next;
+				else if(input[i] > next)
+				{
+					comparisons++;
+					if(input[i] > max)
+					{
+						comparisons++;
+						max = input[i];
+					}
 					
+					if(next < min)
+					{
+						comparisons++;
+						min = next;
+					}
 				}
-				comparisons++;
 				
-			} else {
-				comparisons++;
+				else
+				{
+					comparisons++;
+					if(input[i] > max)
+					{
+						comparisons++;
+						max = input[i];
+					}
+					
+					else if(input[i] < min)
+					{
+						comparisons++;
+						min = input[i];
+					}
+				}
 			}
-			i = i + 2;
+			
+			else
+			{
+				comparisons++;
+				if(input[i] < min)
+				{
+					comparisons++;
+					min = input[i];
+				}
+					
+				else if(input[i] > max)
+				{
+					comparisons++;
+					max = input[i];
+				}
+			}			
 		}
-		int maxComparisons = 3 * (input.length / 2);
+		double maxComparisons = 1.5 * input.length;
 		String output = ("Max: " + max + ", min: " + min + ", comparisons: " + comparisons + ", 3n/2=" + maxComparisons);
-		System.out.println(output);
-		
+		System.out.println(output + "\n");
 	}
 	
 	public static int[] createRandomArray(int size, int maxValue) {
